@@ -10,18 +10,24 @@
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
             "args": ["maps/42.fdf"],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"
         },
         {
-            "type": "pwa-msedge",
+            "name": "gcc - Build and debug active file",
+            "type": "cppdbg",
             "request": "launch",
-            "name": "Launch Edge against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: gcc build active file"
         }
     ]
 }
