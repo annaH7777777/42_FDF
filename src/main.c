@@ -1,8 +1,13 @@
 #include "fdf.h"
+int close_programm(fdf *data)
+{
+    mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+    exit(0);
+}
 
 int deal_key(int key, fdf *data)
 {
-    printf("/nkey: %d/n", key);
+    printf("\nkey: %d\n", key);
     if(key == 126)
         data->shift_y -= 10;
     else if(key == 125)
@@ -11,10 +16,12 @@ int deal_key(int key, fdf *data)
         data->shift_x -= 10;
     else if(key == 124)
         data->shift_x += 10;
+    else if(key == 53)
+        close_programm(data);
     else
         return -1;
-    //mlx_clear_window(data->mlx_ptr, data->win_ptr);
-    //draw(data);
+    mlx_clear_window(data->mlx_ptr, data->win_ptr);
+    draw(data);
     
     return (0);
 }
