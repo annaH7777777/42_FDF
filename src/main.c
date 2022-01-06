@@ -5,7 +5,7 @@ int close_programm(fdf *data)
     exit(0);
 }
 
-int deal_key(int key, fdf *data)
+int deal_key_press(int key, fdf *data)
 {
     printf("\nkey: %d\n", key);
     if(key == 126)
@@ -19,7 +19,26 @@ int deal_key(int key, fdf *data)
     else if(key == 53)
         close_programm(data);
     else
-        return -1;
+        return 0;
+    mlx_clear_window(data->mlx_ptr, data->win_ptr);
+    draw(data);
+    
+    return (0);
+}
+
+int deal_key_release(int key, fdf *data)
+{
+    printf("\nkey: %d\n", key);
+    if(key == 126)
+        data->shift_y = 0;
+    else if(key == 125)
+        data->shift_y = 0;
+    else if(key == 123)
+        data->shift_x = 0;
+    else if(key == 124)
+        data->shift_x = 0;
+    else
+        return 0;
     mlx_clear_window(data->mlx_ptr, data->win_ptr);
     draw(data);
     
@@ -58,6 +77,8 @@ int main(int argc, char **argv)
 
     //bresenham(10, 10, 600, 300, data);
     draw(data);
-    mlx_key_hook(data->win_ptr, deal_key, data);
+    //mlx_key_hook(data->win_ptr, deal_key, data);
+    mlx_hook(vars.win, 2, 1L << 2, deal_key_press, NULL);
+	mlx_hook(vars.win, 3, 1L << 3, deal_key_release, NULL);
     mlx_loop(data->mlx_ptr);
 }
