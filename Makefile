@@ -24,7 +24,8 @@ SOURCES_LIST = main.c\
 	read_file.c\
 	draw.c\
 	get_next_line.c\
-	get_next_line_utils.c
+	get_next_line_utils.c\
+	utils.c
 	
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

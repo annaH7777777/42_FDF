@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
 
 #define WINDOW_HEIGHT 1000
 #define WINDOW_WIDTH 1000
@@ -41,8 +42,9 @@ typedef struct
 
 
 
-void read_file(char *file_name, fdf *data);
-void bresenham(float x, float y, float x1, float y1, fdf *data);
-void draw(fdf *data);
+void    read_file(char *file_name, fdf *data);
+void    bresenham(float x, float y, float x1, float y1, fdf *data);
+void    draw(fdf *data);
+void    terminate(char *s);
 
 #endif
