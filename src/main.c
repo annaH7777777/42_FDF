@@ -82,7 +82,6 @@ int	main(int argc, char **argv)
 	data->shift_x = WINDOW_WIDTH / 2;
 	data->shift_y = WINDOW_HEIGHT / 2;
 
-    //bresenham(10, 10, 600, 300, data);
 	draw(data);
 	mlx_key_hook(data->win_ptr, deal_key_press, data);
     //mlx_hook(data->win_ptr, 2, 1L << 2, deal_key_press, NULL);
