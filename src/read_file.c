@@ -47,7 +47,6 @@ void fill_matrix(int *z_line, char *line)
 		free(nums[i]);
 		i++;
 	}
-		//printf("\ni: %d\n", i);
 	free(nums);
 }
 
@@ -58,6 +57,7 @@ void read_file(char *file_name, fdf *data)
 	char *line;
 	
 	
+	printf("\nread file start\n");
 	data->height = get_height(file_name);
     data->width = get_width(file_name);
 	//printf("\nheight: %d\twidth: %d\n", data->height, data->width);
@@ -65,9 +65,10 @@ void read_file(char *file_name, fdf *data)
 	i = 0;
 	while(i < data->height)
 		data->z_matrix[i++] = (int*) ft_calloc ((data->width + 1), sizeof(int));
-	// data->z_matrix[i] = NULL;
+	data->z_matrix[i] = NULL;
 	if((fd = open(file_name, O_RDONLY, 0)) == -1)
 		return ;
+	printf("\nread file fd: %d\n", fd);
 	i = 0;
 	while(1)
 	{
@@ -79,5 +80,7 @@ void read_file(char *file_name, fdf *data)
 		free(line);
 		i++;
 	}
+	//printf("\nread file 1\n");
+	printf("\nread file finish\n");
 	close(fd);
 }

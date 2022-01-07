@@ -9,6 +9,21 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 1000
+
+typedef struct s_data
+{
+  void *img;
+  char *addr;
+  int *data;
+  int bits_per_pixel;
+  int line_length;
+  int endian;
+  int		img_width;
+	int		img_height;
+} t_data;
+
 typedef struct
 {
     int width;
@@ -21,7 +36,10 @@ typedef struct
 
     void *mlx_ptr;
     void *win_ptr;
+    t_data img;
 }   fdf;
+
+
 
 void read_file(char *file_name, fdf *data);
 void bresenham(float x, float y, float x1, float y1, fdf *data);
