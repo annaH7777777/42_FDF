@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:16:19 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 20:32:41 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 21:19:26 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WINDOW_HEIGHT 1000
-# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 2000
+# define WINDOW_WIDTH 2000
 
 typedef struct s_data
 {

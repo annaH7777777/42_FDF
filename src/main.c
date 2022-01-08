@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:20:12 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 20:34:37 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 21:22:07 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,21 @@ int	close_programm(t_fdf *data)
 
 int	deal_key_press(int key, t_fdf *data)
 {
+	printf("key %d", key);
 	if (key == 126)
-		data->shift_y += 10;
-	else if (key == 125)
 		data->shift_y -= 10;
+	else if (key == 125)
+		data->shift_y += 10;
 	else if (key == 123)
-		data->shift_x += 10;
-	else if (key == 124)
 		data->shift_x -= 10;
+	else if (key == 124)
+		data->shift_x += 10;
 	else if (key == 53)
 		close_programm(data);
+	else if(key == 27 && data->zoom >= 1)
+		data->zoom -= 1;
+	else if(key == 24)
+		data->zoom += 1;
 	return (0);
 }
 
@@ -51,7 +56,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		terminate ("Incorrect arguments!");
-	printf("\nleaks %d\n", getpid());
 	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 		terminate("malloc error");
