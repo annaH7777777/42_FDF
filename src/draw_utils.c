@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:44:07 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 20:33:01 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 21:58:42 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void	zoom(t_coords *coords, t_fdf *data)
 	coords->y *= data->zoom;
 	coords->x1 *= data->zoom;
 	coords->y1 *= data->zoom;
+    rotate_x(coords, data);
+    rotate_y(coords, data);
+    rotate_z(coords, data);
 }
 
 void	shift(t_coords *coords, t_fdf *data)

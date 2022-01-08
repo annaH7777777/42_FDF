@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:16:19 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 21:19:26 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:28:11 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # define WINDOW_HEIGHT 2000
 # define WINDOW_WIDTH 2000
 
+typedef enum
+{
+	ISO,
+	PARALLEL
+}	t_projection;
+
 typedef struct s_data
 {
 	void	*img;
@@ -37,6 +43,15 @@ typedef struct s_data
 	int		img_height;
 }	t_data;
 
+typedef struct s_camera
+{
+	t_projection	projection;
+	float			alpha;
+	float			beta;
+	float			gamma;
+}	t_camera;
+
+
 typedef struct s_fdf
 {
 	int		width;
@@ -48,6 +63,7 @@ typedef struct s_fdf
 	int		shift_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_camera	*camera;
 	t_data	img;
 }	t_fdf;
 
@@ -73,5 +89,8 @@ void	zoom(t_coords *coords, t_fdf *data);
 void	shift(t_coords *coords, t_fdf *data);
 float	max_number(float a, float b);
 int		rgb(int r, int g, int b);
+void	rotate_x(t_coords *coords, t_fdf *data);
+void	rotate_y(t_coords *coords, t_fdf *data);
+void	rotate_z(t_coords *coords, t_fdf *data);
 
 #endif

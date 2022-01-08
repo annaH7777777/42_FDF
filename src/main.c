@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:20:12 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 21:22:07 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:30:28 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ int	deal_key_press(int key, t_fdf *data)
 		data->zoom -= 1;
 	else if(key == 24)
 		data->zoom += 1;
+	else if(key == 12)
+		data->camera->alpha += 0.05;
+	else if(key == 13)
+		data->camera->alpha -= 0.05;
+	else if(key == 14)
+		data->camera->beta += 0.05;
+	else if(key == 15)
+		data->camera->beta -= 0.05;
+	else if(key == 17)
+		data->camera->gamma += 0.05;
+	else if(key == 16)
+		data->camera->gamma -= 0.05;
+	else if(key == 35) //p
+		data->camera->projection = PARALLEL;
+	else if(key == 34) //i
+		data->camera->projection = ISO;
 	return (0);
 }
 
@@ -67,6 +83,11 @@ int	main(int argc, char **argv)
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
 	data->zoom = 20;
+	data->camera = malloc (sizeof(t_camera));
+	data->camera->alpha = 0;
+	data->camera->beta = 0;
+	data->camera->gamma = 0;
+	data->camera->projection = ISO;
 	data->shift_x = WINDOW_WIDTH / 2;
 	data->shift_y = WINDOW_HEIGHT / 2;
 	mlx_key_hook(data->win_ptr, deal_key_press, data);
