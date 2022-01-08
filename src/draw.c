@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/08 18:20:52 by annharut          #+#    #+#             */
+/*   Updated: 2022/01/08 18:20:53 by annharut         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -34,7 +46,7 @@ void	bresenham(float x, float y, float x1, float y1, fdf *data)
 {
 	float	x_step;
 	float	y_step;
-	int		max;
+	float		max;
 	int		z;
 	int		z1;
 
@@ -68,31 +80,36 @@ void	bresenham(float x, float y, float x1, float y1, fdf *data)
 	}
 }
 
-void	clear_color_buffer(int color, t_data *img)
+//rgb
+int rgb(int r, int g, int b)
 {
-	int	x;
-	int	y;
+	return r << 16 | g << 8 | b;
+}
 
-	x = 0;
-	y = 0;
-	while (x < WINDOW_WIDTH)
+void	clear_color_buffer(fdf *data)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < WINDOW_HEIGHT)
 	{
-		while (y < WINDOW_HEIGHT)
-		{
-			my_mlx_pixel_put (img, x, y, color);
-			y++;
-		}
-		x++;
+		x = -1;
+		while (++x < WINDOW_WIDTH)
+			my_mlx_pixel_put(&data->img, x, y, rgb(0,0,0));
 	}
 }
 
-void	draw(fdf *data)
+
+
+int	draw(fdf *data)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	clear_color_buffer(0x0, &data->img);
+	// clear_window_mlx(data);
+	clear_color_buffer(data);
 	while (y < data->height)
 	{
 		x = 0;
@@ -107,4 +124,6 @@ void	draw(fdf *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	mlx_do_sync(data->mlx_ptr);
+	return 0;
 }

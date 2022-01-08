@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/08 18:20:12 by annharut          #+#    #+#             */
+/*   Updated: 2022/01/08 18:20:13 by annharut         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	close_programm(fdf *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	free(data);
+	free_fdf(data);
 	exit(0);
+	return (0);
 }
 
 int	deal_key_press(int key, fdf *data)
@@ -19,11 +31,18 @@ int	deal_key_press(int key, fdf *data)
 		data->shift_x -= 10;
 	else if (key == 53)
 		close_programm(data);
-	else
-		return (0);
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	draw(data);
 	return (0);
+}
+
+void free_fdf(fdf	*data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->img.img);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	int i = -1;
+	while (data->z_matrix[++i])
+		free(data->z_matrix[i]);
+	free(data->z_matrix);
+	free(data);
 }
 
 int	main(int argc, char **argv)
@@ -32,6 +51,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		terminate ("Incorrect arguments!");
+	printf("\nleaks %d\n", getpid());
 	data = (fdf *)malloc(sizeof(fdf));
 	if (!data)
 		terminate("malloc error");
@@ -45,7 +65,11 @@ int	main(int argc, char **argv)
 	data->zoom = 20;
 	data->shift_x = WINDOW_WIDTH / 2;
 	data->shift_y = WINDOW_HEIGHT / 2;
-	draw(data);
+	// draw(data);
 	mlx_key_hook(data->win_ptr, deal_key_press, data);
+	mlx_hook(data->win_ptr, 17, 1L << 17, close_programm, data);
+	mlx_loop_hook(data->mlx_ptr, draw, data);
 	mlx_loop(data->mlx_ptr);
+	free_fdf(data);
 }
+ 

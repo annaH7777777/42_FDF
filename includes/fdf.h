@@ -10,8 +10,8 @@
 #include <fcntl.h>
 #include <math.h>
 
-#define WINDOW_HEIGHT 1000
-#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 2000
+#define WINDOW_WIDTH 2000
 
 typedef struct s_data
 {
@@ -44,7 +44,8 @@ typedef struct
 
 void    read_file(char *file_name, fdf *data);
 void    bresenham(float x, float y, float x1, float y1, fdf *data);
-void    draw(fdf *data);
+int     draw(fdf *data);
 void    terminate(char *s);
+void    free_fdf(fdf	*data);
 
 #endif
