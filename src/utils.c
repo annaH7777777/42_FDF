@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:21:08 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 22:44:10 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:57:05 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ float	max_number(float a, float b)
 int	rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int	close_programm(t_fdf *data)
+{
+	free_fdf(data);
+	exit(0);
+	return (0);
 }

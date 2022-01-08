@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:16:19 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 22:38:19 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:58:33 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int		rgb(int r, int g, int b);
 void	rotate_x(t_coords *coords, t_fdf *data);
 void	rotate_y(t_coords *coords, t_fdf *data);
 void	rotate_z(t_coords *coords, t_fdf *data);
+int		close_programm(t_fdf *data);
 
 #endif
