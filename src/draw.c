@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:20:52 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 22:29:03 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:38:26 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	bresenham(t_coords *coords, t_fdf *data)
 	float	max;
 
 	fill_z(coords, data);
-	zoom(coords, data);
+	treat_camera(coords, data);
 	if (coords->z || coords->z1)
 		data->color = rgb(255, 0, 0);
 	else
 		data->color = rgb(255, 255, 255);
-	if(data->camera->projection == ISO)
-		isometric(coords);
 	shift(coords, data);
 	x_step = coords->x1 - coords->x;
 	y_step = coords->y1 - coords->y;

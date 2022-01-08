@@ -24,6 +24,7 @@ SOURCES_LIST = main.c\
 	read_file.c\
 	draw.c\
 	draw_utils.c\
+	draw_utils_2.c\
 	get_next_line.c\
 	get_next_line_utils.c\
 	utils.c

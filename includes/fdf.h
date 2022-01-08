@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:16:19 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 22:28:11 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:38:19 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WINDOW_HEIGHT 2000
-# define WINDOW_WIDTH 2000
+# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 1000
 
 typedef enum
 {
@@ -85,7 +85,7 @@ void	free_fdf(t_fdf	*data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	clear_color_buffer(t_fdf *data);
 void	isometric(t_coords *coords);
-void	zoom(t_coords *coords, t_fdf *data);
+void	treat_camera(t_coords *coords, t_fdf *data);
 void	shift(t_coords *coords, t_fdf *data);
 float	max_number(float a, float b);
 int		rgb(int r, int g, int b);

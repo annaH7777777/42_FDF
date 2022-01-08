@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:44:07 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 21:58:42 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 22:43:32 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,17 @@ void	isometric(t_coords *coords)
 	coords->y1 = (previous_x1 + previous_y1) * sin(0.523599) - coords->z1;
 }
 
-void	zoom(t_coords *coords, t_fdf *data)
+void	treat_camera(t_coords *coords, t_fdf *data)
 {
 	coords->x *= data->zoom;
 	coords->y *= data->zoom;
 	coords->x1 *= data->zoom;
 	coords->y1 *= data->zoom;
-    rotate_x(coords, data);
-    rotate_y(coords, data);
-    rotate_z(coords, data);
+	rotate_x(coords, data);
+	rotate_y(coords, data);
+	rotate_z(coords, data);
+	if (data->camera->projection == ISO)
+		isometric(coords);
 }
 
 void	shift(t_coords *coords, t_fdf *data)
