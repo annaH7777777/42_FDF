@@ -6,20 +6,20 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:20:12 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 18:20:13 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:34:37 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	close_programm(fdf *data)
+int	close_programm(t_fdf *data)
 {
 	free_fdf(data);
 	exit(0);
 	return (0);
 }
 
-int	deal_key_press(int key, fdf *data)
+int	deal_key_press(int key, t_fdf *data)
 {
 	if (key == 126)
 		data->shift_y += 10;
@@ -34,7 +34,7 @@ int	deal_key_press(int key, fdf *data)
 	return (0);
 }
 
-void free_fdf(fdf	*data)
+void free_fdf(t_fdf	*data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -47,12 +47,12 @@ void free_fdf(fdf	*data)
 
 int	main(int argc, char **argv)
 {
-	fdf	*data;
+	t_fdf	*data;
 
 	if (argc != 2)
 		terminate ("Incorrect arguments!");
 	printf("\nleaks %d\n", getpid());
-	data = (fdf *)malloc(sizeof(fdf));
+	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 		terminate("malloc error");
 	read_file(argv[1], data);
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	data->zoom = 20;
 	data->shift_x = WINDOW_WIDTH / 2;
 	data->shift_y = WINDOW_HEIGHT / 2;
-	// draw(data);
 	mlx_key_hook(data->win_ptr, deal_key_press, data);
 	mlx_hook(data->win_ptr, 17, 1L << 17, close_programm, data);
 	mlx_loop_hook(data->mlx_ptr, draw, data);

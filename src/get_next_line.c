@@ -6,7 +6,7 @@
 /*   By: annharut <annharut@student.42yerevan.am    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 18:20:34 by annharut          #+#    #+#             */
-/*   Updated: 2022/01/08 18:20:35 by annharut         ###   ########.fr       */
+/*   Updated: 2022/01/08 19:49:59 by annharut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	get_next_line(int fd, char **line)
 		save = join_str(save, buff);
 	}
 	free(buff);
-	//printf("\ngnl\n");
 	*line = get_line(save);
 	save = get_save(save);
 	if (reader == 0)
